@@ -13,15 +13,23 @@ const initState = fromJS({
 	}
 });
 
-
 const MovieReducer = (state = initState, action) => {
 	switch (action.type) {
-		case RECIEVE_GET_MOVIE_LATEST:
-			return state.update('latestData', value => action.payload);
+    case RECIEVE_GET_MOVIE_LATEST:
+			return state.updateIn(
+        ['movieData', 'latestData'],
+        elm => action.payload.response || elm
+      );
     case RECIEVE_GET_MOVIE_HOT:
-      return state.update('hotData', value => action.payload);
+      return state.updateIn(
+        ['movieData', 'hotData'],
+        elm => action.payload.response || elm
+      );
     case RECIEVE_GET_MOVIE_FREE:
-      return state.update('freeData', value => action.payload);
+      return state.updateIn(
+        ['movieData', 'freeData'],
+        elm => action.payload.response || elm
+      );
 		default:
 			return state;
 	}

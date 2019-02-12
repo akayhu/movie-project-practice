@@ -21,8 +21,8 @@ export const requestGetMovieLatest = param => ({
       'Content-Type': 'application/json',
       'x-api-key': 'zvCLtEEJcp2XRNvqiDEuY6OkgOMdUPRm8JlOQyDi'
     },
-		body: JSON.stringify(param),
-		credentials: 'include',
+		// body: JSON.stringify(param),
+		// credentials: 'include',
 	},
 });
 
@@ -46,8 +46,8 @@ export const requestGetMovieHot = param => ({
       'Content-Type': 'application/json',
       'x-api-key': 'zvCLtEEJcp2XRNvqiDEuY6OkgOMdUPRm8JlOQyDi'
     },
-		body: JSON.stringify(param),
-		credentials: 'include',
+		// body: JSON.stringify(param),
+		// credentials: 'include',
 	},
 });
 
@@ -71,7 +71,7 @@ export const requestGetMovieFree = param => ({
       'Content-Type': 'application/json',
       'x-api-key': 'zvCLtEEJcp2XRNvqiDEuY6OkgOMdUPRm8JlOQyDi'
     },
-		body: JSON.stringify(param),
-		credentials: 'include',
+		// body: JSON.stringify(param),
+		// credentials: 'include',
 	},
 });
