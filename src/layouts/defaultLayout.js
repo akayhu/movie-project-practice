@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
-import logo from './../logo.svg';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { requestGetMovieLatest } from 'actions/movie';
+// import logo from './../logo.svg';
 import '../App.css';
 import '../index.css';
 
 class Default extends Component {
+
+  getMovieData = () => {
+    this.props.requestGetMovieLatest();
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <button type="button" onClick={this.getMovieData}>取最新活動電影資料到reducer</button>
     );
   }
 }
 
-export default Default;
+export default compose(
+	connect(null, { requestGetMovieLatest })
+)(Default);
