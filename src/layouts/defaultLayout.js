@@ -8,6 +8,7 @@ import {
 } from 'actions/movie';
 import Movie from 'containers/movie';
 import { Tabs } from 'antd';
+import Loading from 'components/loading';
 import 'antd/dist/antd.css';
 import './style.scss';
 
@@ -25,13 +26,16 @@ class Default extends Component {
       <div className="movie-main">
         <Tabs defaultActiveKey="1" onChange={this.callback}>
           <TabPane tab="最新活動" key="1">
-            <Movie data={latestData} />
+            { latestData && <Movie data={latestData} />}
+            { !latestData && <Loading />}
           </TabPane>
           <TabPane tab="熱門活動" key="2">
-            <Movie data={hotData} />
+            { hotData && <Movie data={hotData} /> }
+            { !hotData && <Movie data={hotData} /> }
           </TabPane>
           <TabPane tab="免費活動" key="3">
-            <Movie data={freeData} />
+            { freeData && <Movie data={freeData} /> }
+            { !freeData && <Movie data={freeData} /> }
           </TabPane>
         </Tabs>
       </div>
