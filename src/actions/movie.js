@@ -60,7 +60,7 @@ export const FAILURE_GET_MOVIE_FREE = 'FAILURE_GET_MOVIE_FREE';
 
 export const requestGetMovieFree = param => ({
 	[RSAA]: {
-		endpoint: `${generalConfig.aipHost}/movie/hot`,
+		endpoint: `${generalConfig.aipHost}/movie/free`,
 		types: [
 			REQUEST_GET_MOVIE_FREE,
 			RECIEVE_GET_MOVIE_FREE,

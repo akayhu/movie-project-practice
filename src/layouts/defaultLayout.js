@@ -6,31 +6,44 @@ import {
   requestGetMovieHot,
   requestGetMovieFree
 } from 'actions/movie';
+import Movie from 'containers/movie';
+import { Tabs } from 'antd';
+import 'antd/dist/antd.css';
+import './style.scss';
+
+const TabPane = Tabs.TabPane;
 
 class Default extends Component {
 
-  getMovieDataLatest = () => {
-    this.props.requestGetMovieLatest();
-  }
-
-  getMovieDataHot = () => {
-    this.props.requestGetMovieHot();
-  }
-
-  getMovieDataFree = () => {
-    this.props.requestGetMovieFree();
+  callback = key => {
+    console.log(key);
   }
 
   render() {
+    const { latestData, hotData, freeData } = this.props;
     return (
-      <Fragment>
-        <button type="button" onClick={ this.getMovieDataLatest }>取最新活動電影資料到reducer</button>
-        <button type="button" onClick={ this.getMovieDataHot }>取熱門活動電影資料到reducer</button>
-        <button type="button" onClick={ this.getMovieDataFree }>取免費活動電影資料到reducer</button>
-      </Fragment>
+      <div className="movie-main">
+        <Tabs defaultActiveKey="1" onChange={this.callback}>
+          <TabPane tab="最新活動" key="1">
+            <Movie data={latestData} />
+          </TabPane>
+          <TabPane tab="熱門活動" key="2">
+            <Movie data={hotData} />
+          </TabPane>
+          <TabPane tab="免費活動" key="3">
+            <Movie data={freeData} />
+          </TabPane>
+        </Tabs>
+      </div>
     );
   }
 }
+
+const matStateToProps = (state, props) => ({
+	latestData: state.getIn(['movie', 'movieData', 'latestData']),
+	hotData: state.getIn(['movie', 'movieData', 'hotData']),
+	freeData: state.getIn(['movie', 'movieData', 'freeData']),
+});
 
 const actions = {
   requestGetMovieLatest,
@@ -39,5 +52,5 @@ const actions = {
 };
 
 export default compose(
-	connect(null, actions)
+	connect(matStateToProps, actions)
 )(Default);
