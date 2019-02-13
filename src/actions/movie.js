@@ -8,9 +8,9 @@ export const REQUEST_GET_MOVIE_LATEST = 'REQUEST_GET_MOVIE_LATEST';
 export const RECIEVE_GET_MOVIE_LATEST = 'RECIEVE_GET_MOVIE_LATEST';
 export const FAILURE_GET_MOVIE_LATEST = 'FAILURE_GET_MOVIE_LATEST';
 
-export const requestGetMovieLatest = param => ({
+export const requestGetMovieLatest = (param = { offset: 0, limit: 10 }) => ({
 	[RSAA]: {
-		endpoint: `${generalConfig.aipHost}/movie/latest`,
+		endpoint: `${generalConfig.aipHost}/movie/latest?offset=${param.offset}&limit=${param.limit}`,
 		types: [
 			REQUEST_GET_MOVIE_LATEST,
 			RECIEVE_GET_MOVIE_LATEST,
@@ -33,9 +33,9 @@ export const REQUEST_GET_MOVIE_HOT = 'REQUEST_GET_MOVIE_HOT';
 export const RECIEVE_GET_MOVIE_HOT = 'RECIEVE_GET_MOVIE_HOT';
 export const FAILURE_GET_MOVIE_HOT = 'FAILURE_GET_MOVIE_HOT';
 
-export const requestGetMovieHot = param => ({
+export const requestGetMovieHot = (param = { offset: 0, limit: 10 }) => ({
 	[RSAA]: {
-		endpoint: `${generalConfig.aipHost}/movie/hot`,
+		endpoint: `${generalConfig.aipHost}/movie/hot?offset=${param.offset}&limit=${param.limit}`,
 		types: [
 			REQUEST_GET_MOVIE_HOT,
 			RECIEVE_GET_MOVIE_HOT,
@@ -58,9 +58,9 @@ export const REQUEST_GET_MOVIE_FREE = 'REQUEST_GET_MOVIE_FREE';
 export const RECIEVE_GET_MOVIE_FREE = 'RECIEVE_GET_MOVIE_FREE';
 export const FAILURE_GET_MOVIE_FREE = 'FAILURE_GET_MOVIE_FREE';
 
-export const requestGetMovieFree = param => ({
+export const requestGetMovieFree = (param = { offset: 0, limit: 10 }) => ({
 	[RSAA]: {
-		endpoint: `${generalConfig.aipHost}/movie/free`,
+		endpoint: `${generalConfig.aipHost}/movie/free?offset=${param.offset}&limit=${param.limit}`,
 		types: [
 			REQUEST_GET_MOVIE_FREE,
 			RECIEVE_GET_MOVIE_FREE,

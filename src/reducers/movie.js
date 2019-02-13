@@ -7,29 +7,68 @@ import {
 
 const initState = fromJS({
 	movieData: {
-    latestData: null,
-    hotData: null,
-    freeData: null,
+    latestData: {
+      dataList: [],
+      hasNext: false,
+      offset: 0,
+      total: 0
+    },
+    hotData: {
+      dataList: [],
+      hasNext: false,
+      offset: 0,
+      total: 0
+    },
+    freeData: {
+      dataList: [],
+      hasNext: false,
+      offset: 0,
+      total: 0
+    },
 	}
 });
 
 const MovieReducer = (state = initState, action) => {
 	switch (action.type) {
     case RECIEVE_GET_MOVIE_LATEST:
-			return state.updateIn(
-        ['movieData', 'latestData'],
-        elm => action.payload.response || elm
-      );
+      const latestDataList = action.payload.response.dataList;
+      return state.updateIn(['movieData', 'latestData'], elm => {
+        return elm.updateIn(['dataList'], value => latestDataList.reduce(
+          (newList, newPerson) => {
+            return newList.push(newPerson);
+          }
+          , value))
+          .update('hasNext', value => action.payload.response.hasNext)
+          .update('offset', value => action.payload.response.offset)
+          .update('total', value => action.payload.response.total);
+      });
+
     case RECIEVE_GET_MOVIE_HOT:
-      return state.updateIn(
-        ['movieData', 'hotData'],
-        elm => action.payload.response || elm
-      );
+      const hotDataList = action.payload.response.dataList;
+      return state.updateIn(['movieData', 'hotData'], elm => {
+        return elm.updateIn(['dataList'], value => hotDataList.reduce(
+          (newList, newPerson) => {
+            return newList.push(newPerson);
+          }
+          , value))
+          .update('hasNext', value => action.payload.response.hasNext)
+          .update('offset', value => action.payload.response.offset)
+          .update('total', value => action.payload.response.total);
+      });
+
     case RECIEVE_GET_MOVIE_FREE:
-      return state.updateIn(
-        ['movieData', 'freeData'],
-        elm => action.payload.response || elm
-      );
+      const freeDataList = action.payload.response.dataList;
+      return state.updateIn(['movieData', 'freeData'], elm => {
+        return elm.updateIn(['dataList'], value => freeDataList.reduce(
+          (newList, newPerson) => {
+            return newList.push(newPerson);
+          }
+          , value))
+          .update('hasNext', value => action.payload.response.hasNext)
+          .update('offset', value => action.payload.response.offset)
+          .update('total', value => action.payload.response.total);
+      });
+
 		default:
 			return state;
 	}
