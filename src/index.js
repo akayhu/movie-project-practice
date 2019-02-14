@@ -19,12 +19,12 @@ const initialize = () => {
 
   // 取得免費活動電影列表
   store.dispatch(requestGetMovieFree());
-}
+};
 
 initialize();
 
 const App = () => (
-  <Provider store={store}>
+  <Provider store={ store }>
     <DefaultLayout />
   </Provider>
 );

@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 
 class LazyLoading extends Component {
+
 	static propTypes = {
 		loadingAct: PropTypes.func.isRequired,
 		body: PropTypes.bool,
 		reverseMode: PropTypes.bool,
 		children: PropTypes.element.isRequired,
 	};
+
 	static defaultProps = {
 		body: true,
 		reverseMode: false,
 	};
-	componentDidMount() {
+
+	componentDidMount = () => {
 		const { body } = this.props;
 		// set action
 		if (body) {
@@ -30,7 +33,7 @@ class LazyLoading extends Component {
 		}
 	}
 
-	componentWillUnmount() {
+	componentWillUnmount = () => {
 		const { body } = this.props;
 		const targetNode = body ? document : this.topNode.childNodes[0];
 		if (targetNode) {
@@ -38,7 +41,7 @@ class LazyLoading extends Component {
 		}
 	}
 
-	act(target) {
+	act = target => {
 		// console.log(target);
 		const { loadingAct = () => {} } = this.props;
 		if (this.props.reverseMode) {
@@ -61,7 +64,7 @@ class LazyLoading extends Component {
 				}}
 				style={{ height: '100%' }}
 			>
-				{React.cloneElement(this.props.children)}
+				{ React.cloneElement(this.props.children) }
 			</div>
 		);
 	}

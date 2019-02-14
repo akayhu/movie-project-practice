@@ -1,9 +1,13 @@
 import { takeEvery, put, select, call } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
-import { RECIEVE_GET_MOVIE_LATEST } from 'actions/movie'
+import {
+  requestGetMovieLatest,
+  requestGetMovieHot,
+  requestGetMovieFree
+} from 'actions/movie';
+import { requestAPI } from './util';
 
-export function* testSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_LATEST, function*(action) {
-    console.log('saga action', action);
-  });
+export function* movieSaga() {
+  yield call(requestAPI, requestGetMovieLatest);
+  yield call(requestAPI, requestGetMovieHot);
+  yield call(requestAPI, requestGetMovieFree);
 }
