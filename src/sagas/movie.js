@@ -14,10 +14,46 @@ import { requestAPI } from './util';
 
 // 不同 action.type 但執行結果一樣可以寫在同一個saga function*
 // 例如：yield takeEvery([ RECIEVE_GET_MOVIE_LATEST, RECIEVE_GET_MOVIE_HOT, RECIEVE_GET_MOVIE_FREE], mySaga());
-//
+export function* movieSaga() {
+  yield takeEvery([
+    FETCH_MOVIE_LATEST,
+    FETCH_MOVIE_HOT,
+    FETCH_MOVIE_FREE
+  ], function* workLatestSaga(action) {
+    try {
+
+      if (action.type === 'FETCH_MOVIE_LATEST') {
+        yield put(processingStart(FETCH_MOVIE_LATEST, 'api'));
+        const reqMovieLatest = yield call(requestAPI, requestGetMovieLatest);
+        if (reqMovieLatest.payload.response) {
+          yield put(processingEnd(FETCH_MOVIE_LATEST, 'api'));
+        }
+      }
+
+      if (action.type === 'FETCH_MOVIE_HOT') {
+        yield put(processingStart(FETCH_MOVIE_HOT, 'api'));
+        const reqMovieHot = yield call(requestAPI, requestGetMovieHot);
+        if (reqMovieHot.payload.response) {
+          yield put(processingEnd(FETCH_MOVIE_HOT, 'api'));
+        }
+      }
+
+      if (action.type === 'FETCH_MOVIE_FREE') {
+        yield put(processingStart(FETCH_MOVIE_FREE, 'api'));
+        const reqMovieHot = yield call(requestAPI, requestGetMovieFree);
+        if (reqMovieHot.payload.response) {
+          yield put(processingEnd(FETCH_MOVIE_FREE, 'api'));
+        }
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  });
+}
+
 // 不同 action.type 但執行結果不一樣則分開寫saga function*
 // 例如：yield takeEvery(RECIEVE_GET_MOVIE_HOT, mySaga())
-
 export function* movieLatestSaga() {
   yield takeEvery(FETCH_MOVIE_LATEST, function* workLatestSaga(action) {
     try {
