@@ -9,6 +9,7 @@ import {
   requestGetMovieHot,
   requestGetMovieFree
 } from 'actions/movie';
+import 'antd/dist/antd.css';
 
 const initialize = () => {
   // 取得最新活動電影列表
@@ -21,7 +22,7 @@ const initialize = () => {
   store.dispatch(requestGetMovieFree());
 };
 
-initialize();
+// initialize();
 
 const App = () => (
   <Provider store={ store }>

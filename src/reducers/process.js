@@ -1,11 +1,10 @@
 import { fromJS, Record, is } from 'immutable';
-import uuid from 'uuid/v4';
 import { PROCESSING_START, PROCESSING_END } from 'actions/process';
 
 // [{ level: ...., key: ..... }]
 export const createProcess = Record({
 	level: 'global',
-	key: uuid(),
+	key: '',
 });
 
 export const initState = fromJS({

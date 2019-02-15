@@ -6,7 +6,7 @@ import ProcessReducer from './process';
 const rootReducer = combineReducers({
   movie: MovieReducer,
   test: TestReducer,
-  Process: ProcessReducer
+  process: ProcessReducer
 });
 
 export default rootReducer;

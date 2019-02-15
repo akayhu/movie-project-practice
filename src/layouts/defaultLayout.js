@@ -6,16 +6,28 @@ import {
   requestGetMovieHot,
   requestGetMovieFree
 } from 'actions/movie';
+import { checkProcessIsDone } from 'utils/process';
 import Movie from 'containers/movie';
 import LazyLoading from 'components/lazyLoading';
 import { Tabs } from 'antd';
 import Loading from 'components/loading';
-import 'antd/dist/antd.css';
 import './style.scss';
 
 const TabPane = Tabs.TabPane;
 
 class Default extends Component {
+
+  componentDidMount = () => {
+    const {
+      requestGetMovieHot,
+      requestGetMovieFree,
+      requestGetMovieLatest,
+    } = this.props;
+
+    requestGetMovieHot();
+    requestGetMovieFree();
+    requestGetMovieLatest();
+  }
 
   loadMore = type => {
     const {
@@ -56,40 +68,43 @@ class Default extends Component {
   }
 
   render() {
-    const { latestData, hotData, freeData } = this.props;
-    const latest = latestData.toJS();
-    const hot = hotData.toJS();
-    const free = freeData.toJS();
+    const { latestData, hotData, freeData, process } = this.props;
+    const latest = latestData.toJS() || [];
+    const hot = hotData.toJS() || [];
+    const free = freeData.toJS() || [];
+    const latestMovieLoadingDone = checkProcessIsDone(process, 'movie-latest', 'api');
+    const hotMovieLoadingDone = checkProcessIsDone(process, 'movie-hot', 'api');
+    const freeMovieLoadingDone = checkProcessIsDone(process, 'movie-free', 'api');
 
     return (
       <div className="movie-main">
         <Tabs defaultActiveKey="1" onChange={ this.callback }>
           <TabPane tab="最新活動" key="1">
             {
-              latest && 
+              latest && latestMovieLoadingDone &&
               <LazyLoading body loadingAct={ this.loadMore.bind(this, 'latest') }>
                 <Movie data={ latest } />
               </LazyLoading>
             }
-            { !latest && <Loading /> }
+            { !latestMovieLoadingDone && <Loading /> }
           </TabPane>
           <TabPane tab="熱門活動" key="2">
             {
-              hot &&
+              hot && hotMovieLoadingDone &&
               <LazyLoading body loadingAct={ this.loadMore.bind(this, 'hot') }>
-                <Movie data={ hot } />
+                <Movie data={ hot } movieLoadingDone={ hotMovieLoadingDone } />
               </LazyLoading>
             }
-            { !hot && <Loading /> }
+            { !hotMovieLoadingDone && <Loading /> }
           </TabPane>
           <TabPane tab="免費活動" key="3">
             {
-              free &&
+              free && freeMovieLoadingDone &&
               <LazyLoading body loadingAct={ this.loadMore.bind(this, 'free') }>
-                <Movie data={ free } />
+                <Movie data={ free } movieLoadingDone={ freeMovieLoadingDone } />
               </LazyLoading>
             }
-            { !free && <Loading /> }
+            { !freeMovieLoadingDone && <Loading /> }
           </TabPane>
         </Tabs>
       </div>
@@ -100,13 +115,15 @@ class Default extends Component {
 const matStateToProps = (state, props) => ({
 	latestData: state.getIn(['movie', 'movieData', 'latestData']),
 	hotData: state.getIn(['movie', 'movieData', 'hotData']),
-	freeData: state.getIn(['movie', 'movieData', 'freeData']),
+  freeData: state.getIn(['movie', 'movieData', 'freeData']),
+  process: state.getIn(['process']),
 });
 
 const actions = {
   requestGetMovieLatest,
   requestGetMovieHot,
-  requestGetMovieFree
+  requestGetMovieFree,
+  checkProcessIsDone
 };
 
 export default compose(
