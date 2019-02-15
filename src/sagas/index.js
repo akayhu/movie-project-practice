@@ -3,7 +3,7 @@ import {
   movieLatestSaga,
   movieHotSaga,
   movieFreeSaga
-} from './movie';
+ } from './movie';
 
 export default function* rootSaga() {
   yield all([

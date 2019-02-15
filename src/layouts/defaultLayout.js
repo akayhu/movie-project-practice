@@ -4,8 +4,16 @@ import { connect } from 'react-redux';
 import {
   requestGetMovieLatest,
   requestGetMovieHot,
-  requestGetMovieFree
+  requestGetMovieFree,
 } from 'actions/movie';
+import {
+  fetchMovieLatest,
+  fetchMovieHot,
+  fetchMovieFree,
+  FETCH_MOVIE_LATEST,
+  FETCH_MOVIE_HOT,
+  FETCH_MOVIE_FREE
+} from 'actions/fetchMovie';
 import { checkProcessIsDone } from 'utils/process';
 import Movie from 'containers/movie';
 import LazyLoading from 'components/lazyLoading';
@@ -19,14 +27,14 @@ class Default extends Component {
 
   componentDidMount = () => {
     const {
-      requestGetMovieHot,
-      requestGetMovieFree,
-      requestGetMovieLatest,
+      fetchMovieLatest,
+      fetchMovieHot,
+      fetchMovieFree,
     } = this.props;
 
-    requestGetMovieHot();
-    requestGetMovieFree();
-    requestGetMovieLatest();
+    fetchMovieLatest();
+    fetchMovieHot();
+    fetchMovieFree();
   }
 
   loadMore = type => {
@@ -82,13 +90,18 @@ class Default extends Component {
   }
 
   render() {
-    const { latestData, hotData, freeData, process } = this.props;
+    const {
+      latestData,
+      hotData,
+      freeData,
+      process
+    } = this.props;
     const latest = latestData.toJS() || [];
     const hot = hotData.toJS() || [];
     const free = freeData.toJS() || [];
-    const latestMovieLoadingDone = checkProcessIsDone(process, 'movie-latest', 'api');
-    const hotMovieLoadingDone = checkProcessIsDone(process, 'movie-hot', 'api');
-    const freeMovieLoadingDone = checkProcessIsDone(process, 'movie-free', 'api');
+    const latestMovieLoadingDone = checkProcessIsDone(process, FETCH_MOVIE_LATEST, 'api');
+    const hotMovieLoadingDone = checkProcessIsDone(process, FETCH_MOVIE_HOT, 'api');
+    const freeMovieLoadingDone = checkProcessIsDone(process, FETCH_MOVIE_FREE, 'api');
 
     const latestMovieContent = {
       title: '最新活動',
@@ -137,7 +150,10 @@ const actions = {
   requestGetMovieLatest,
   requestGetMovieHot,
   requestGetMovieFree,
-  checkProcessIsDone
+  checkProcessIsDone,
+  fetchMovieLatest,
+  fetchMovieHot,
+  fetchMovieFree,
 };
 
 export default compose(

@@ -2,67 +2,60 @@ import { takeEvery, put, select, call } from 'redux-saga/effects';
 import {
   requestGetMovieLatest,
   requestGetMovieHot,
-  requestGetMovieFree,
-  RECIEVE_GET_MOVIE_LATEST,
-  RECIEVE_GET_MOVIE_HOT,
-  RECIEVE_GET_MOVIE_FREE
+  requestGetMovieFree
 } from 'actions/movie';
 import {
-  processingStart,
-  processingEnd
-} from 'actions/process';
+  FETCH_MOVIE_LATEST,
+  FETCH_MOVIE_HOT,
+  FETCH_MOVIE_FREE
+} from 'actions/fetchMovie';
+import { processingStart, processingEnd } from 'actions/process';
 import { requestAPI } from './util';
 
+// 不同 action.type 但執行結果一樣可以寫在同一個saga function*
+// 例如：yield takeEvery([ RECIEVE_GET_MOVIE_LATEST, RECIEVE_GET_MOVIE_HOT, RECIEVE_GET_MOVIE_FREE], mySaga());
+//
+// 不同 action.type 但執行結果不一樣則分開寫saga function*
+// 例如：yield takeEvery(RECIEVE_GET_MOVIE_HOT, mySaga())
+
 export function* movieLatestSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_LATEST, function* workLatestSaga(action) {
+  yield takeEvery(FETCH_MOVIE_LATEST, function* workLatestSaga(action) {
     try {
-      yield put(processingStart('movie-latest', 'api'));
-      if (action.payload.response) {
-        yield put(processingEnd('movie-latest', 'api'));
+      yield put(processingStart(FETCH_MOVIE_LATEST, 'api'));
+      const reqMovieLatest = yield call(requestAPI, requestGetMovieLatest);
+      if (reqMovieLatest.payload.response) {
+        yield put(processingEnd(FETCH_MOVIE_LATEST, 'api'));
       }
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
   });
 }
 
 export function* movieHotSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_HOT, function* workHotSaga(action) {
+  yield takeEvery(FETCH_MOVIE_HOT, function* workHotSaga(){
     try {
-      yield put(processingStart('movie-hot', 'api'));
-      if (action.payload.response) {
-        yield put(processingEnd('movie-hot', 'api'));
+      yield put(processingStart(FETCH_MOVIE_HOT, 'api'));
+      const reqMovieHot = yield call(requestAPI, requestGetMovieHot);
+      if (reqMovieHot.payload.response) {
+        yield put(processingEnd(FETCH_MOVIE_HOT, 'api'));
       }
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
   });
 }
 
 export function* movieFreeSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_FREE, function* workFreeSaga(action) {
+  yield takeEvery(FETCH_MOVIE_FREE, function* workFreeSaga(){
     try {
-      yield put(processingStart('movie-free', 'api'));
-      if (action.payload.response) {
-        yield put(processingEnd('movie-free', 'api'));
+      yield put(processingStart(FETCH_MOVIE_FREE, 'api'));
+      const reqMovieHot = yield call(requestAPI, requestGetMovieFree);
+      if (reqMovieHot.payload.response) {
+        yield put(processingEnd(FETCH_MOVIE_FREE, 'api'));
       }
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
   });
 }
-
-// 如果是一進頁面就先發api在讀頁面
-// export function* movieSaga() {
-//   yield put(processingStart('movie-latest', 'api'));
-//   yield call(requestAPI, requestGetMovieLatest);
-//   yield put(processingEnd('movie-latest', 'api'));
-
-//   yield put(processingStart('movie-hot', 'api'));
-//   yield call(requestAPI, requestGetMovieHot);
-//   yield put(processingEnd('movie-hot', 'api'));
-
-//   yield put(processingStart('movie-free', 'api'));
-//   yield call(requestAPI, requestGetMovieFree);
-//   yield put(processingEnd('movie-free', 'api'));
-// }

@@ -3,7 +3,7 @@ import {
   RECIEVE_GET_MOVIE_LATEST,
   RECIEVE_GET_MOVIE_HOT,
   RECIEVE_GET_MOVIE_FREE
-} from '../actions/movie';
+} from 'actions/movie';
 
 const initState = fromJS({
 	movieData: {
