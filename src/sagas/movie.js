@@ -22,9 +22,11 @@ export function* movieSaga() {
   ], function* workLatestSaga(action) {
     try {
 
+      const limit = 10;
+
       if (action.type === 'FETCH_MOVIE_LATEST') {
         yield put(processingStart(FETCH_MOVIE_LATEST, 'api'));
-        const reqMovieLatest = yield call(requestAPI, requestGetMovieLatest);
+        const reqMovieLatest = yield call(requestAPI, requestGetMovieLatest, { offset: action.param.offset, limit });
         if (reqMovieLatest.payload.response) {
           yield put(processingEnd(FETCH_MOVIE_LATEST, 'api'));
         }
@@ -32,7 +34,7 @@ export function* movieSaga() {
 
       if (action.type === 'FETCH_MOVIE_HOT') {
         yield put(processingStart(FETCH_MOVIE_HOT, 'api'));
-        const reqMovieHot = yield call(requestAPI, requestGetMovieHot);
+        const reqMovieHot = yield call(requestAPI, requestGetMovieHot, { offset: action.param.offset, limit });
         if (reqMovieHot.payload.response) {
           yield put(processingEnd(FETCH_MOVIE_HOT, 'api'));
         }
@@ -40,7 +42,7 @@ export function* movieSaga() {
 
       if (action.type === 'FETCH_MOVIE_FREE') {
         yield put(processingStart(FETCH_MOVIE_FREE, 'api'));
-        const reqMovieHot = yield call(requestAPI, requestGetMovieFree);
+        const reqMovieHot = yield call(requestAPI, requestGetMovieFree, { offset: action.param.offset, limit });
         if (reqMovieHot.payload.response) {
           yield put(processingEnd(FETCH_MOVIE_FREE, 'api'));
         }

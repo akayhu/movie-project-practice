@@ -42,9 +42,9 @@ class Default extends Component {
       latestData,
       hotData,
       freeData,
-      requestGetMovieLatest,
-      requestGetMovieHot,
-      requestGetMovieFree
+      fetchMovieLatest,
+      fetchMovieHot,
+      fetchMovieFree
     } = this.props;
     const limit = 10;
 
@@ -55,17 +55,17 @@ class Default extends Component {
     switch (type) {
       case 'hot':
         if (hot.hasNext) {
-        	requestGetMovieHot({ offset: hot.offset, limit });
+        	fetchMovieHot({ offset: hot.offset, limit });
         }
         break;
       case 'free':
         if (free.hasNext) {
-          requestGetMovieFree({ offset: free.offset, limit });
+          fetchMovieFree({ offset: free.offset, limit });
         }
         break;
       default:
         if (latest.hasNext) {
-          requestGetMovieLatest({ offset: latest.offset, limit });
+          fetchMovieLatest({ offset: latest.offset, limit });
         }
         break;
     };
