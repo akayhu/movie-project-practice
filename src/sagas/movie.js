@@ -14,7 +14,7 @@ import {
 import { requestAPI } from './util';
 
 export function* movieLatestSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_LATEST, function* workSaga(action) {
+  yield takeEvery(RECIEVE_GET_MOVIE_LATEST, function* workLatestSaga(action) {
     try {
       yield put(processingStart('movie-latest', 'api'));
       if (action.payload.response) {
@@ -27,11 +27,11 @@ export function* movieLatestSaga() {
 }
 
 export function* movieHotSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_HOT, function* workSaga(action) {
+  yield takeEvery(RECIEVE_GET_MOVIE_HOT, function* workHotSaga(action) {
     try {
-      yield put(processingStart('hot-latest', 'api'));
+      yield put(processingStart('movie-hot', 'api'));
       if (action.payload.response) {
-        yield put(processingEnd('hot-latest', 'api'));
+        yield put(processingEnd('movie-hot', 'api'));
       }
     } catch (e) {
       console.error(e);
@@ -40,11 +40,11 @@ export function* movieHotSaga() {
 }
 
 export function* movieFreeSaga() {
-  yield takeEvery(RECIEVE_GET_MOVIE_FREE, function* workSaga(action) {
+  yield takeEvery(RECIEVE_GET_MOVIE_FREE, function* workFreeSaga(action) {
     try {
-      yield put(processingStart('free-latest', 'api'));
+      yield put(processingStart('movie-free', 'api'));
       if (action.payload.response) {
-        yield put(processingEnd('free-latest', 'api'));
+        yield put(processingEnd('movie-free', 'api'));
       }
     } catch (e) {
       console.error(e);

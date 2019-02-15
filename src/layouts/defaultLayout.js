@@ -67,6 +67,20 @@ class Default extends Component {
     console.log(key);
   }
 
+  renderTabContent = (contentData) => {
+    return (
+      <TabPane tab={ contentData.title } key={ contentData.key }>
+        {
+          contentData.data && contentData.movieLoadingDone &&
+          <LazyLoading body loadingAct={ this.loadMore.bind(this, contentData.type) }>
+            <Movie data={ contentData.data } />
+          </LazyLoading>
+        }
+        { !contentData.movieLoadingDone && <Loading /> }
+      </TabPane>
+    );
+  }
+
   render() {
     const { latestData, hotData, freeData, process } = this.props;
     const latest = latestData.toJS() || [];
@@ -76,36 +90,36 @@ class Default extends Component {
     const hotMovieLoadingDone = checkProcessIsDone(process, 'movie-hot', 'api');
     const freeMovieLoadingDone = checkProcessIsDone(process, 'movie-free', 'api');
 
+    const latestMovieContent = {
+      title: '最新活動',
+      key: '1',
+      type: 'latest',
+      data: latest,
+      movieLoadingDone: latestMovieLoadingDone
+    };
+
+    const hotMovieContent = {
+      title: '熱門活動',
+      key: '2',
+      type: 'hot',
+      data: hot,
+      movieLoadingDone: hotMovieLoadingDone
+    };
+
+    const freeMovieContent = {
+      title: '免費活動',
+      key: '3',
+      type: 'free',
+      data: free,
+      movieLoadingDone: freeMovieLoadingDone
+    };
+
     return (
       <div className="movie-main">
         <Tabs defaultActiveKey="1" onChange={ this.callback }>
-          <TabPane tab="最新活動" key="1">
-            {
-              latest && latestMovieLoadingDone &&
-              <LazyLoading body loadingAct={ this.loadMore.bind(this, 'latest') }>
-                <Movie data={ latest } />
-              </LazyLoading>
-            }
-            { !latestMovieLoadingDone && <Loading /> }
-          </TabPane>
-          <TabPane tab="熱門活動" key="2">
-            {
-              hot && hotMovieLoadingDone &&
-              <LazyLoading body loadingAct={ this.loadMore.bind(this, 'hot') }>
-                <Movie data={ hot } movieLoadingDone={ hotMovieLoadingDone } />
-              </LazyLoading>
-            }
-            { !hotMovieLoadingDone && <Loading /> }
-          </TabPane>
-          <TabPane tab="免費活動" key="3">
-            {
-              free && freeMovieLoadingDone &&
-              <LazyLoading body loadingAct={ this.loadMore.bind(this, 'free') }>
-                <Movie data={ free } movieLoadingDone={ freeMovieLoadingDone } />
-              </LazyLoading>
-            }
-            { !freeMovieLoadingDone && <Loading /> }
-          </TabPane>
+          { this.renderTabContent(latestMovieContent) }
+          { this.renderTabContent(hotMovieContent) }
+          { this.renderTabContent(freeMovieContent) }
         </Tabs>
       </div>
     );
