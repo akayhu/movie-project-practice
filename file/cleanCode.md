@@ -130,7 +130,7 @@ function test(fruit, quantity) {
 
 因此，始終**旨在儘早減少嵌套和返回，但不要過度**。如果您感興趣，有一篇文章和StackOverflow討論會進一步討論這個主題：
 
-- [避免其他，早期](http://blog.timoxley.com/post/47041269194/avoid-else-return-early)由蒂姆奧克斯利回歸[回歸](http://blog.timoxley.com/post/47041269194/avoid-else-return-early)
+- [避免其他，早期](http://blog.timoxley.com/post/47041269194/avoid-else-return-early)由蒂姆奧克斯利[回歸](http://blog.timoxley.com/post/47041269194/avoid-else-return-early)
 - [StackOverflow討論](https://softwareengineering.stackexchange.com/questions/18454/should-i-return-from-a-function-early-or-use-an-if-statement) if / else編碼風格
 
 ### 3. 使用默認功能參數和解構
@@ -330,6 +330,7 @@ function test() {
 ```
 
 代碼太長了！我們可以通過以下方式減少行數`Array.every`：
+(every() 方法會測試陣列中的所有元素是否都通過了由給定之函式所實作的測試。)
 
 ```javascript
 const fruits = [
@@ -347,6 +348,7 @@ function test() {
 ```
 
 現在更乾淨了嗎？以類似的方式，如果我們想測試任何水果是否為紅色，我們可以用`Array.some`它來實現它。
+(some() 方法會測試陣列中是否至少有一個元素通過由給定之函式所實作的測試。)
 
 ```javascript
 const fruits = [
