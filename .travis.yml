@@ -1,0 +1,14 @@
+language: node_js
+# 穩定更新版
+node_js:
+- lts/*  
+
+install:
+- npm install
+
+script:
+- npm test
+- npm run build
+
+# 待補
+deploy:
