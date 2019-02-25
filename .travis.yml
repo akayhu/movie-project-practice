@@ -1,16 +1,18 @@
+# 語言
 language: node_js
 # 穩定更新版
 node_js:
 - lts/*
-
+# 跑測試(只測master)
 branches:
   only:
   - master
-
+# 定義 build 的過程會產生某些檔案是可以在下一次 build 利用
 cache:
   directories:
   - node_modules
 
+# 寄信位置
 notifications:
   email:
     recipients:
@@ -23,7 +25,7 @@ install:
 
 script:
 - npm test
-- npm run deploy
+- npm run build
 
 # 待補
 deploy:
