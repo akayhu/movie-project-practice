@@ -20,9 +20,11 @@ notifications:
     on_success: always
     on_failure: always
 
+# 安裝依賴
 install:
 - npm install
 
+# 運行腳本
 script:
 - npm test
 - npm run build
@@ -30,4 +32,7 @@ script:
 # 待補
 deploy:
   provider: pages
+  skip_cleanup: true
   github-token: $GITHUB_MOVIE_PROJECT
+  on:
+    branch: master
