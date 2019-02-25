@@ -75,3 +75,10 @@ export const requestGetMovieFree = (param = { offset: 0, limit: 10 }) => ({
 		// credentials: 'include',
 	},
 });
+
+
+export const CHANGE_TEST_STATUS = 'CHANGE_TEST_STATUS';
+export const changeTestStatus = (status = false) => ({
+	type: CHANGE_TEST_STATUS,
+	status
+});

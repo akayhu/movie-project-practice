@@ -5,6 +5,7 @@ import {
   requestGetMovieLatest,
   requestGetMovieHot,
   requestGetMovieFree,
+  changeTestStatus
 } from 'actions/movie';
 import {
   fetchMovieLatest,
@@ -30,8 +31,10 @@ class Default extends Component {
       fetchMovieLatest,
       fetchMovieHot,
       fetchMovieFree,
+      changeTestStatus
     } = this.props;
 
+    changeTestStatus(true);
     fetchMovieLatest();
     fetchMovieHot();
     fetchMovieFree();
@@ -154,6 +157,7 @@ const actions = {
   fetchMovieLatest,
   fetchMovieHot,
   fetchMovieFree,
+  changeTestStatus
 };
 
 export default compose(

@@ -43,5 +43,10 @@
   ],
   "devDependencies": {
     "redux-devtools": "^3.5.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:staged"
+    }
   }
 }

@@ -2,10 +2,11 @@ import { fromJS } from 'immutable';
 import {
   RECIEVE_GET_MOVIE_LATEST,
   RECIEVE_GET_MOVIE_HOT,
-  RECIEVE_GET_MOVIE_FREE
+  RECIEVE_GET_MOVIE_FREE,
+  CHANGE_TEST_STATUS
 } from 'actions/movie';
 
-const initState = fromJS({
+export const initState = fromJS({
 	movieData: {
     latestData: {
       dataList: [],
@@ -25,10 +26,14 @@ const initState = fromJS({
       offset: 0,
       total: 0
     },
-	}
+  },
+  testData: {
+    content: false
+  }
 });
 
 const MovieReducer = (state = initState, action) => {
+  console.log(action);
 	switch (action.type) {
     case RECIEVE_GET_MOVIE_LATEST:
       const latestDataList = action.payload.response.dataList;
@@ -68,6 +73,9 @@ const MovieReducer = (state = initState, action) => {
           .update('offset', value => action.payload.response.offset)
           .update('total', value => action.payload.response.total);
       });
+
+    case CHANGE_TEST_STATUS:
+      return state.updateIn(['testData', 'content'], value => action.status);
 
 		default:
 			return state;
