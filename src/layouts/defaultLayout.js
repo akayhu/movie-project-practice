@@ -20,7 +20,7 @@ import LazyLoading from 'components/lazyLoading';
 import { Tabs } from 'antd';
 import Loading from 'components/loading';
 import './style.scss';
-
+ 
 const TabPane = Tabs.TabPane;
 
 class Default extends Component {
