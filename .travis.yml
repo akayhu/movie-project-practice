@@ -24,7 +24,7 @@ install:
 - npm install
 
 script:
-# - npm test
+- npm test
 - npm run build
 
 # 待補
