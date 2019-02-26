@@ -2,7 +2,6 @@
 
 [![](https://travis-ci.org/akayhu/movie-project-practice.svg?branch=master)](https://travis-ci.org/akayhu/movie-project-practice)
 [![](https://img.shields.io/badge/language-React-blue.svg)](https://reactjs.org)
-![](https://img.shields.io/badge/react-version-16.8.1-blue.svg)
 
 
 **電影專案練習**
