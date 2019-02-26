@@ -11,8 +11,8 @@
 5. redux-api-middleware
 6. API timeout for saga (optional)
 
-## 其他練習
+## 自動化(CI/CD)練習
 
 串接 Travis-ci 部署
 
-[網址:https://travis-ci.org/akayhu/movie-project-practice](https://travis-ci.org/akayhu/movie-project-practice)
+網址:[https://travis-ci.org/akayhu/movie-project-practice](https://travis-ci.org/akayhu/movie-project-practice)
