@@ -2,7 +2,8 @@
 
 [![](https://travis-ci.org/akayhu/movie-project-practice.svg?branch=master)](https://travis-ci.org/akayhu/movie-project-practice)
 [![](https://img.shields.io/badge/開發環境-create--react--app-critical.svg)](https://github.com/facebook/create-react-app)
-[![](https://img.shields.io/badge/開發語言-react-green.svg)](https://reactjs.org)
+[![](https://img.shields.io/badge/node--version--react--app-critical.svg)](https://github.com/facebook/create-react-app)
+[![](https://img.shields.io/badge/開發語言-react--v16.8.1-green.svg)](https://reactjs.org)
 [![](https://img.shields.io/badge/dependencies-redux-blue.svg)](https://redux.js.org/)
 [![](https://img.shields.io/badge/dependencies-react--redux-blue.svg)](https://react-redux.js.org/)
 [![](https://img.shields.io/badge/dependencies-react--router-blue.svg)](https://reacttraining.com/react-router/)
