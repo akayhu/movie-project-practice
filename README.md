@@ -1,9 +1,7 @@
 # movie-project-practice
 
 [![](https://travis-ci.org/akayhu/movie-project-practice.svg?branch=master)](https://travis-ci.org/akayhu/movie-project-practice)
-
 [![](https://img.shields.io/badge/開發環境-create--react--app-critical.svg)](https://github.com/facebook/create-react-app)
-
 [![](https://img.shields.io/badge/開發語言-React%20v16.8.1-green.svg)](https://reactjs.org)
 
 [![](https://img.shields.io/badge/dependencies-Redux%20v4.0.1-blue.svg)](https://redux.js.org/)
