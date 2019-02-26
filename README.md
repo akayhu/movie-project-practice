@@ -1,11 +1,6 @@
 # movie-project-practice
 
 [![](https://travis-ci.org/akayhu/movie-project-practice.svg?branch=master)](https://travis-ci.org/akayhu/movie-project-practice)
-<span class="badge-travisci">
-  <a href="https://travis-ci.org/akayhu/movie-project-practice" title="Check this project's build status on TravisCI">
-    <img src="https://travis-ci.org/akayhu/movie-project-practice.svg?branch=master" alt="Travis CI Build Status" />
-  </a>
-</span>
 
 **電影專案練習**
 
