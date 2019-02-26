@@ -10,3 +10,9 @@
 4. 必須實作 process reducer 處理 API 發送狀態 (不能用 loading flags)
 5. redux-api-middleware
 6. API timeout for saga (optional)
+
+## 其他練習
+
+串接 Travis-ci 部署
+
+[網址:https://travis-ci.org/akayhu/movie-project-practice](https://travis-ci.org/akayhu/movie-project-practice)
