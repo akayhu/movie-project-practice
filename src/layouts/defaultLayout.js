@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import {

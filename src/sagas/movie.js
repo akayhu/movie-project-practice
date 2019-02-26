@@ -1,4 +1,4 @@
-import { takeEvery, put, select, call } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import {
   requestGetMovieLatest,
   requestGetMovieHot,

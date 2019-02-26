@@ -1,5 +1,5 @@
 import { RSAA } from 'redux-api-middleware';
-import { put, take, fork, call, race } from 'redux-saga/effects';
+import { put, take, race } from 'redux-saga/effects';
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
