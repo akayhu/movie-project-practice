@@ -1,6 +1,7 @@
 # movie-project-practice
 
 [![](https://travis-ci.org/akayhu/movie-project-practice.svg?branch=master)](https://travis-ci.org/akayhu/movie-project-practice)
+![](https://img.shields.io/badge/language-react-blue.svg)
 
 **電影專案練習**
 
