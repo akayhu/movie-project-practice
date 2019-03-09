@@ -1,2 +1,6 @@
+import 'storybook-addon-react-docgen/register';
 import '@storybook/addon-actions/register';
 import '@storybook/addon-links/register';
+import '@storybook/addon-viewport/register';
+import '@storybook/addon-options/register';
+import 'storybook-addon-docgen';

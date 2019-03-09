@@ -4,6 +4,17 @@ import Task from './task';
 
 class TaskList extends Component {
 
+  static propTypes = {
+    loading: PropTypes.bool,
+    tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+    onPinTask: PropTypes.func.isRequired,
+    onArchiveTask: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+		loading: false,
+	};
+
   loadingRow = () => {
     return (
       <div className="loading-item">
@@ -63,16 +74,5 @@ class TaskList extends Component {
     );
   }
 }
-
-TaskList.propTypes = {
-  loading: PropTypes.bool,
-  tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  onPinTask: PropTypes.func.isRequired,
-  onArchiveTask: PropTypes.func.isRequired,
-};
-
-TaskList.defaultProps = {
-  loading: false,
-};
 
 export default TaskList;

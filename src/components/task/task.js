@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Task extends Component {
+
+  static propTypes = {
+    task: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      state: PropTypes.string.isRequired,
+    }),
+    onArchiveTask: PropTypes.func,
+    onPinTask: PropTypes.func,
+  }
+
   render() {
     const { task: { id, title, state }, onArchiveTask, onPinTask } = this.props;
     return (
@@ -30,15 +41,5 @@ class Task extends Component {
     );
   }
 }
-
-Task.propTypes = {
-  task: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    state: PropTypes.string.isRequired,
-  }),
-  onArchiveTask: PropTypes.func,
-  onPinTask: PropTypes.func,
-};
 
 export default Task;
