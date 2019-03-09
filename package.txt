@@ -1,0 +1,14 @@
+讓commit push前執行測試
+安裝husky套件後，在package.json補上下方code
+
+"husky": {
+  "hooks": {
+    "pre-commit": "npm run test:staged"  <= 如果是自定義指令，要加上run
+  }
+}
+
+因為測試執行完不會自動結束，所以要再scripts要新增插入指令(執行完自動結束)
+
+"scripts": {
+  "test:staged": "CI=true react-scripts test"  <= 這段
+}
