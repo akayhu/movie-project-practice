@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { ARCHIVE_TASK, PIN_TASK } from 'actions/movie';
+import { ARCHIVE_TASK, PIN_TASK } from 'actions/task';
 
 const initState = fromJS({
   tasks: [
