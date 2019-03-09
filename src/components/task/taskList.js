@@ -5,6 +5,7 @@ import Task from './task';
 class TaskList extends Component {
 
   static propTypes = {
+    /** 讀取中狀態 */
     loading: PropTypes.bool,
     tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
     onPinTask: PropTypes.func.isRequired,
